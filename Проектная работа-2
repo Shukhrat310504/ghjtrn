@@ -1,0 +1,60 @@
+#include "stdafx.h";
+#include <iostream>
+
+#include <conio.h>
+using namespace std;
+class BankAccount
+{
+    char number[20];// номер счёта
+    int size; // размер всшего счета
+    char currency;// валюта
+ 
+public:
+    void OpenAccount(); // откывает счет
+    void Get();// снимает необходимую сумму
+    void Set();// поплние свашего счета
+    void OutPut(); // содержимое вашего счета
+};
+void BankAccount::OpenAccount()
+{
+    cout<<"Введите номер  вашего счета: ";cin>>number;
+    cout<<"Выберете валюту($,Tg, R, E): ";cin>>currency;
+    cout<<"Укажите необходимую сумму для пополнение вашего счета:";cin>>size;
+    cout<<"Ваш счет успешно был открыт! "<<endl<<endl;
+}
+void BankAccount::Get()
+{
+    int n;
+    do
+    {
+    cout<<"Укажите необходимую сумму для снятья с вашего счета:";cin>>n;
+    if(n>size) cout<<"Недостаточно средства, попробуйте выбрать другую сумму:"<<endl;
+    }
+    while(n>size);
+    size=size-n;
+}
+void BankAccount::Set()
+{
+    int n;
+    cout<<"Укажите необходимую сумму для пополнения вашего счета: ";cin>>n;
+    size=size+n;
+}
+void BankAccount::OutPut()
+{
+    cout<<endl<<"Ваш счет:: "<<endl;
+    cout<<"Номер вашего счета: "<<number<<endl;
+    cout<<" Выбранная валюта: "<<currency<<endl;
+    cout<<"Колчество средств на вашем счёту: "<<size<<endl<<endl;
+}
+int main()
+{
+    setlocale(0,"Tg");
+    BankAccount ac;
+    ac.OpenAccount();
+    ac.Get();
+    ac.OutPut();
+    ac.Set();
+    ac.OutPut();
+    return 0;
+}
+
